@@ -114,6 +114,12 @@ svg{display:block}
 .dtx b{display:block;font-family:"Fredoka","Nunito",sans-serif;font-size:1.7rem;font-weight:600;line-height:1.15;margin:2px 0}
 .dtx em{display:block;font-style:normal;font-size:.8rem;font-weight:700;color:var(--muted)}
 .dt.over .dtx b{color:var(--bad)}.dt.none .dr{opacity:.5}
+.stk{display:flex;gap:10px;margin:0 0 12px}
+.sk{flex:1;min-width:0;padding:10px 12px;border-radius:var(--r);border:1px solid var(--line);background:var(--panel);box-shadow:var(--sh)}
+.sk small{display:block;font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.sk b{display:block;font-family:"Fredoka","Nunito",sans-serif;font-size:1.35rem;font-weight:600;line-height:1.2;margin-top:2px}
+.sk em{display:block;font-style:normal;font-size:.74rem;font-weight:700;color:var(--muted)}
+.sk.good.live b{color:#1E9E5F}.sk.bad.live b{color:var(--bad)}.sk.bad.live{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 9%,var(--panel))}.sk.good.live{border-color:#1E9E5F}
 .tmr{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;margin:0 0 12px}
 .tmr .tl{min-width:0}.tmr .tl b{display:block;font-size:.98rem}.tmr .tl small{display:block;margin-top:2px;font-size:.78rem;font-weight:700;color:var(--muted)}
 .tmr.run .tl b{font-family:"Fredoka","Nunito",sans-serif;font-size:1.25rem;font-variant-numeric:tabular-nums}
@@ -260,6 +266,7 @@ dialog textarea{resize:vertical;min-height:3rem}
  <div class="card st"><b id="cs2">0</b><small>Days logged</small></div>
  <div class="card st"><b id="cs3">0</b><small>Avg mg/day</small></div>
 </div>
+<div class="stk" id="stk" hidden></div>
 <div class="card cal"><div class="wd" id="wd"></div><div class="grid" id="cgrid"></div></div>
 <p class="legend"><i></i><span id="lgt"></span></p>
 </div>
@@ -274,7 +281,7 @@ dialog textarea{resize:vertical;min-height:3rem}
  <div class="row"><small id="abn"></small><button id="abnow" class="rb">Back up now</button></div>
 </section>
 <section class="card">
- <div class="row"><div class="rl"><b>Home-screen widget</b><small>Long-press the home screen, choose Widgets, find Daily Vitamins. Its Powder / Tablet buttons log your usual one (the last you used) with one tap.</small></div></div>
+ <div class="row"><div class="rl"><b>Home-screen widget</b><small>Long-press the home screen, choose Widgets, find Daily Vitamins. Tap Powder or Tablet on it to get a pop-up list of your items: pick one to log it, or choose + New to add one.</small></div></div>
 </section>
 <section class="card" style="margin-top:12px">
  <div class="row"><div class="rl"><b>App version</b><small id="avs"></small></div><button id="avb" class="rb">Check for updates</button></div>
@@ -390,7 +397,7 @@ const BIG={
 // ---- state ----
 let S;try{S=JSON.parse(localStorage.getItem('dv'))}catch(e){}
 if(!S||!Array.isArray(S.e))S={e:[]};if(!Array.isArray(S.it))S.it=[];if(!S.set||typeof S.set!=='object')S.set={};
-const save=()=>{localStorage.setItem('dv',JSON.stringify(S));if(typeof remSoon==='function')remSoon()};
+const save=()=>{localStorage.setItem('dv',JSON.stringify(S));if(typeof remSoon==='function')remSoon();if(typeof wgSoon==='function')wgSoon()};
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dsm=()=>{const m=/^(\d\d):(\d\d)$/.exec(S.set.ds||'');return m?[+m[1],+m[2]]:[0,0]}; // when a day starts: default 00:00 (12 AM), changeable in Settings
@@ -438,7 +445,7 @@ function render(){
  if(!$('#list').hidden)renderList();
  if(view==='cal')renderCal();
  if(view==='set')renderSet();
- renderDT();
+ renderDT();renderStreaks();
  if(view==='rem'){renderRem();renderRL()}
 }
 // ---- calendar view ----
@@ -467,7 +474,7 @@ $('#cprev').onclick=()=>{const m=new Date(cm);cm=new Date(m.getFullYear(),m.getM
 $('#cnext').onclick=()=>{const m=new Date(cm);cm=new Date(m.getFullYear(),m.getMonth()+1,1).getTime();renderCal()};
 $('#ctoday').onclick=()=>{day=d0(Date.now());cm=new Date(new Date().getFullYear(),new Date().getMonth(),1).getTime();render()};
 // ---- self-update: the installed app pulls newer versions of itself from GitHub Pages ----
-const APP_VERSION=1794457998; // stamped with a timestamp by build.sh / publish.sh; 0 = development copy
+const APP_VERSION=1794458758; // stamped with a timestamp by build.sh / publish.sh; 0 = development copy
 const UPD_URL='https://agins86.github.io/daily-vitamins/';
 const canUpd=()=>!!(window.N&&N.Filesystem&&APP_VERSION>0&&location.hostname==='localhost');
 const verLabel=()=>APP_VERSION>0?new Date(APP_VERSION*1000).toLocaleString(undefined,{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'Development copy (live from the laptop)';
@@ -695,7 +702,19 @@ function quickLog(k){if(Date.now()-lastLink<3000)return;lastLink=Date.now();
  const rec=S.e.filter(e=>e.t===k&&S.it.some(i=>i.id===e.iid&&i.k===k)).sort((a,b)=>b.ts-a.ts)[0],x=rec&&S.it.find(i=>i.id===rec.iid);
  if(!x)return openList(k);                                  // nothing used yet: show the list instead
  if(k==='t')logItem(x,1);else if(lastAmt(x).v!=='')logItem(x,0,'',lastAmt(x).v);else openList(k)}
-const onLink=u=>{const m=/^dailyvitamins:\/\/log\/([pt])/.exec(u||'');if(m)quickLog(m[1])};
+function logById(k,id){if(Date.now()-lastLink<3000)return;lastLink=Date.now();   // widget popup: log the item picked there
+ if(!$('#list').hidden)closeList();day=d0(Date.now());go('home');
+ const x=S.it.find(i=>i.id===id&&i.k===k);if(!x)return openList(k);
+ if(k==='t')logItem(x,1);else if(lastAmt(x).v!=='')logItem(x,0,'',lastAmt(x).v);else{openList(k);toast('Tap '+lab(x)+' to enter an amount')}}
+function newItem(k){if(!$('#list').hidden)closeList();day=d0(Date.now());go('home');openList(k);openForm(null)}   // widget popup: "+ New"
+const onLink=u=>{u=u||'';let m=/^dailyvitamins:\/\/log\/([pt])\/(.+)$/.exec(u);if(m)return logById(m[1],decodeURIComponent(m[2]));
+ m=/^dailyvitamins:\/\/new\/([pt])/.exec(u);if(m)return newItem(m[1]);
+ m=/^dailyvitamins:\/\/log\/([pt])/.exec(u);if(m)quickLog(m[1])};
+// the widget popup (native) reads this list of items from the app's files folder
+let wgT=null;const wgSoon=()=>{if(!window.N||!N.Filesystem)return;clearTimeout(wgT);wgT=setTimeout(wgSync,600)};
+async function wgSync(){try{const lu={};for(const e of S.e)if(!lu[e.iid]||e.ts>lu[e.iid])lu[e.iid]=e.ts;
+ await N.Filesystem.writeFile({path:'widget.json',data:JSON.stringify(S.it.map(x=>({id:x.id,k:x.k,l:lab(x)+(hasMg(x)?' · '+mgs(x):''),u:lu[x.id]||0}))),directory:N.Directory.Data,encoding:N.Encoding.UTF8})}catch(e){}}
+wgSoon();
 if(window.N){N.App.addListener('appUrlOpen',ev=>onLink(ev.url));N.App.getLaunchUrl().then(r=>onLink(r&&r.url)).catch(()=>{})}
 // ---- my daily target: overall mg goal, shows how much is left today ----
 const dtv=()=>{const v=+S.set.dt;return v>0?v:0};
@@ -707,6 +726,20 @@ function renderDT(){const c=$('#dtc'),t=dtv(),d=dayE().reduce((a,e)=>a+emg(e),0)
  const left=t-d;$('#dts').textContent=left<0?'Over your target by':'mg left today';
  $('#dtb').textContent=left<0?fmg(-left)+' mg':fmg(left)+' mg';
  $('#dtn').textContent=fmg(d)+' of '+fmg(t)+' mg taken'}
+// streaks: consecutive logged days at or under the target (good) / over it (bad); days with nothing logged break a streak
+function streaks(){const t=dtv();if(!t)return null;const tot=new Map();
+ for(const e of S.e){const d=d0(e.ts);tot.set(d,(tot.get(d)||0)+emg(e))}
+ const days=[...tot.keys()].sort((a,b)=>a-b),nx=d=>d0(d+30*36e5);
+ const out={};
+ for(const [key,ok] of [['u',v=>v<=t],['o',v=>v>t]]){let best=0,run=0,prev=null;
+  for(const d of days){const g=ok(tot.get(d));run=g?(prev!==null&&nx(prev)===d&&run>0?run+1:1):0;if(!g)run=0;prev=d;best=Math.max(best,run)}
+  let cur=0,d=d0(Date.now());if(!tot.has(d))d=d0(d-36e5);                    // nothing logged yet today: count back from yesterday
+  while(tot.has(d)&&ok(tot.get(d))){cur++;d=d0(d-36e5)}
+  out[key]={cur,best}}
+ return out}
+function renderStreaks(){const el=$('#stk'),st=streaks();if(!st){el.hidden=true;return}el.hidden=false;
+ const u=st.u,o=st.o,dd=n=>n+(n===1?' day':' days');
+ el.innerHTML=`<div class="sk good${u.cur?' live':''}"><small>Under streak</small><b>${dd(u.cur)}</b><em>Best ${dd(u.best)}</em></div><div class="sk bad${o.cur?' live':''}"><small>Over streak</small><b>${dd(o.cur)}</b><em>Worst ${dd(o.best)}</em></div>`}
 $('#dtc').onclick=()=>{$('#dti').value=dtv()||'';$('#dte').textContent='';$('#dtrm').hidden=!dtv();$('#dtd').showModal();$('#dti').focus()};
 $('#dtx').onclick=()=>$('#dtd').close();
 $('#dtrm').onclick=()=>{delete S.set.dt;save();$('#dtd').close();render()};
