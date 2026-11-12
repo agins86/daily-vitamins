@@ -87,15 +87,46 @@ svg{display:block}
 .cal{padding:10px 8px 8px}
 .wd{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));text-align:center;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:0 0 8px}
 .grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
-.day{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;height:54px;padding:6px 1px 5px;border-radius:10px;background:var(--panel);border:1px solid transparent;font-variant-numeric:tabular-nums;min-width:0}
+.day{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;height:64px;padding:6px 2px 5px;border-radius:10px;background:var(--panel);border:1px solid transparent;font-variant-numeric:tabular-nums;min-width:0}
 .day:active{background:var(--hover)}
-.day .dn{font-size:.82rem;font-weight:700;line-height:1;color:var(--ink2)}
-.day .dm{font-family:"Fredoka","Nunito",sans-serif;font-size:.68rem;font-weight:600;line-height:1;color:var(--ink);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.day .dn{font-size:.86rem;font-weight:700;line-height:1;color:var(--ink2)}
+.day .dm{font-family:"Fredoka","Nunito",sans-serif;font-size:.86rem;font-weight:700;line-height:1;color:var(--ink);max-width:100%;white-space:nowrap;letter-spacing:-.01em;min-height:1em}
+.day.has .dm{padding:3px 5px;border-radius:7px;background:color-mix(in srgb,var(--panel) 72%,transparent)}
 .day.e .dn{color:var(--muted);font-weight:600}
 .day.has{background:color-mix(in srgb,var(--tb) var(--i),var(--panel));border-color:color-mix(in srgb,var(--tb) 18%,var(--line))}
 .day.td .dn{color:var(--tb);font-weight:800}
-.day.td::before{content:"";position:absolute;left:50%;top:21px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--tb)}
+.day.td::before{content:"";position:absolute;left:50%;top:22px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--tb)}
 .day.sel{box-shadow:inset 0 0 0 2px var(--sel);border-color:var(--sel)}
+.ti.hp{margin-bottom:34px}
+.sh{font-family:"Fredoka","Nunito",sans-serif;font-size:1.05rem;font-weight:600;margin:18px 4px 10px}
+.rc{display:flex;align-items:center;gap:12px;padding:12px 16px;margin:0 0 10px}
+.rc .tl{flex:1;min-width:0;text-align:left}.rc .tl b{display:block;font-size:1rem}.rc .tl small{display:block;margin-top:2px;font-size:.78rem;font-weight:700;color:var(--muted)}
+.rc.off{opacity:.6}.rc.due{border-color:var(--tb);background:color-mix(in srgb,var(--tb) 10%,var(--panel))}
+.rb.wide{width:100%;min-height:48px;margin:2px 0 6px}
+.gc{margin:14px 2px 0;font-size:.7rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.gr{align-items:flex-end}.gx{flex:none;width:44px;height:48px;border-radius:var(--rs);background:var(--soft);color:var(--bad);display:flex;align-items:center;justify-content:center}.gx svg{width:18px;height:18px}
+#rgs+.rb{margin-top:12px}
+.dt{display:flex;align-items:center;gap:16px;width:100%;padding:14px 18px;margin:0 0 12px;text-align:left;position:relative}
+.dr{flex:none;width:84px;height:84px;transform:rotate(-90deg)}.dr circle{fill:none;stroke-width:9;stroke-linecap:round}.dr .bg{stroke:var(--soft)}
+.dr .fg{stroke:url(#dg1);stroke-dasharray:0 100;transition:stroke-dasharray .5s ease}.dt.over .dr .fg{stroke:var(--bad)}
+.dp{position:absolute;left:18px;width:84px;text-align:center;font-family:"Fredoka","Nunito",sans-serif;font-weight:600;font-size:.95rem}
+.dtx{min-width:0;flex:1}.dtx small{display:block;font-size:.72rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.dtx b{display:block;font-family:"Fredoka","Nunito",sans-serif;font-size:1.7rem;font-weight:600;line-height:1.15;margin:2px 0}
+.dtx em{display:block;font-style:normal;font-size:.8rem;font-weight:700;color:var(--muted)}
+.dt.over .dtx b{color:var(--bad)}.dt.none .dr{opacity:.5}
+.tmr{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;margin:0 0 12px}
+.tmr .tl{min-width:0}.tmr .tl b{display:block;font-size:.98rem}.tmr .tl small{display:block;margin-top:2px;font-size:.78rem;font-weight:700;color:var(--muted)}
+.tmr.run .tl b{font-family:"Fredoka","Nunito",sans-serif;font-size:1.25rem;font-variant-numeric:tabular-nums}
+.tmr.due{border-color:var(--tb);background:color-mix(in srgb,var(--tb) 10%,var(--panel))}.tmr.due .tl b{color:var(--tb)}
+.tmi{display:flex;gap:12px}.tmi label{flex:1;margin-top:10px}.tmi input{text-align:center;font-size:1.6rem;font-family:"Fredoka","Nunito",sans-serif;font-variant-numeric:tabular-nums}
+.seg{display:flex;gap:4px;padding:4px;margin:10px 0 4px;border-radius:12px;background:var(--soft)}.seg button{flex:1;min-height:40px;border-radius:9px;font-weight:800;color:var(--muted)}.seg button.on{background:var(--panel);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+dialog label.rpt{display:flex;align-items:center;gap:12px;margin:16px 2px 4px;text-transform:none;letter-spacing:0;font-size:.95rem;color:var(--ink);font-weight:800}
+dialog label.rpt input{width:22px;min-height:22px;height:22px;padding:0;accent-color:var(--c)}
+.tmq{margin:14px 0 6px;flex-wrap:wrap}.tmq button{width:auto;min-width:52px;padding:0 12px}
+.pg{position:absolute;left:4%;right:4%;top:calc(100% + 15px);height:17px;border-radius:9px;background:var(--soft);overflow:hidden;font-size:.68rem;font-weight:800;line-height:17px;text-align:center;font-variant-numeric:tabular-nums}
+.pg i{position:absolute;left:0;top:0;bottom:0;background:var(--ic);opacity:.5}
+.pg span{position:relative;color:var(--ink)}
+.pg.over i{background:#E5484D;opacity:.65}
 .day.fut{opacity:.32;pointer-events:none}
 .day:disabled{pointer-events:none}
 .row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border-top:1px solid var(--line2)}
@@ -127,7 +158,7 @@ svg{display:block}
 #list h1 .hi{flex:none;width:30px;height:30px;border-radius:9px;background:var(--c);display:flex;align-items:center;justify-content:center}
 #list h1 .hi svg{width:20px;height:20px}
 .hint{color:var(--muted);font-weight:700;font-size:.82rem;margin:-4px 2px 16px}
-.items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 12px}
+.items{display:grid;align-items:start;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 12px}
 .ti{position:relative;min-width:0}
 .it{position:relative;display:block;width:100%;aspect-ratio:1;border-radius:50%;color:var(--tx);text-align:center;
  background:radial-gradient(circle at 32% 26%,color-mix(in srgb,var(--ic) 68%,#fff) 0,var(--ic) 58%,color-mix(in srgb,var(--ic) 84%,#000) 100%);
@@ -156,7 +187,7 @@ svg{display:block}
 .emptyl{grid-column:1/-1;text-align:center;color:var(--muted);font-weight:700;padding:24px 8px 6px}
 /* ---- dialogs (bottom sheets) ---- */
 dialog{position:fixed;inset:auto 0 0 0;margin:0 auto;border:0;border-radius:22px 22px 0 0;padding:10px 18px calc(var(--sb) + 16px);width:100%;max-width:560px;max-height:calc(100vh - var(--st) - 24px);overflow:auto;background:var(--panel);color:var(--ink);box-shadow:0 -10px 40px -10px rgba(0,0,0,.35)}
-dialog.p{--c:var(--pw)}dialog.t{--c:var(--tb)}
+dialog.p{--c:var(--pw)}dialog.t,#tmd,#dtd{--c:var(--tb)}
 dialog::backdrop{background:rgba(15,10,20,.5)}
 dialog::before{content:"";display:block;width:36px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 12px}
 dialog h3{font-family:"Fredoka","Nunito",sans-serif;font-size:1.3rem;font-weight:600;margin:0 2px 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -215,6 +246,7 @@ dialog textarea{resize:vertical;min-height:3rem}
  <button class="big p" data-t="p" aria-label="Powders"><span class="ico" id="ip"></span><span class="n" id="np"></span></button>
  <button class="big t" data-t="t" aria-label="Tablets"><span class="ico" id="it"></span><span class="n" id="nt"></span></button>
 </main>
+<button class="card dt" id="dtc" aria-label="Daily target"><svg class="dr" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="dg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--pw)"/><stop offset="1" stop-color="var(--tb)"/></linearGradient></defs><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" id="dtr" cx="50" cy="50" r="42" pathLength="100"/></svg><span class="dp" id="dtp"></span><span class="dtx"><small id="dts">My daily target</small><b id="dtb"></b><em id="dtn"></em></span></button>
 <section class="card"><h2 id="lh"></h2><ul id="log"></ul></section>
 <div class="foot"><button id="exp"></button><label id="impl"><input type="file" id="imp" accept="application/json,.json"></label></div>
 </div>
@@ -237,9 +269,27 @@ dialog textarea{resize:vertical;min-height:3rem}
  <div class="row"><div class="rl"><b>Day starts at</b><small>Each day runs from this time until the same time the next day. Use 12:00 AM for normal calendar days.</small></div><input type="time" id="dsi" aria-label="Day starts at"></div>
  <div class="row"><small id="dsn"></small><button id="dsr" class="rb">Reset to 12:00 AM</button></div>
 </section>
+<section class="card" id="abc" hidden>
+ <div class="row"><div class="rl"><b>Weekly auto-backup</b><small>Saves a copy of your data to the phone's Documents/DailyVitamins folder once a week. Restore it with Import backup.</small></div><button id="abb" class="rb">Turn off</button></div>
+ <div class="row"><small id="abn"></small><button id="abnow" class="rb">Back up now</button></div>
+</section>
+<section class="card">
+ <div class="row"><div class="rl"><b>Home-screen widget</b><small>Long-press the home screen, choose Widgets, find Daily Vitamins. Its Powder / Tablet buttons log your usual one (the last you used) with one tap.</small></div></div>
+</section>
 <section class="card" style="margin-top:12px">
  <div class="row"><div class="rl"><b>App version</b><small id="avs"></small></div><button id="avb" class="rb">Check for updates</button></div>
 </section>
+</div>
+<div id="rem" class="view" hidden>
+<header class="hd"><div class="d"><div class="sub">Reminders</div><h1>Notifications</h1></div></header>
+<section class="card" id="rmc" hidden>
+ <div class="row"><div class="rl"><b>Daily reminder</b><small>A notification at this time if you haven't logged anything yet that day.</small></div><input type="time" id="rmt" value="20:00" aria-label="Reminder time"></div>
+ <div class="row"><small id="rmn"></small><button id="rmb" class="rb">Turn on</button></div>
+</section>
+<h2 class="sh">Your reminders</h2>
+<div id="rll"></div>
+<button id="rla" class="rb wide">+ Add reminder</button>
+<p class="hint">Set a first time (in some hours, or at a time of day). Turn on Repeat to keep going: every interval defaults to the same, or add a different one to take turns, like 4h then 6h.</p>
 </div>
 <div id="list" class="view" hidden>
 <header class="hd">
@@ -252,13 +302,21 @@ dialog textarea{resize:vertical;min-height:3rem}
 <nav class="tabs" aria-label="Sections"><div class="in">
  <button id="tabhome" class="on" data-v="home"><span class="tbi"></span>Log</button>
  <button id="tabcal" data-v="cal"><span class="tbi"></span>Calendar</button>
+ <button id="tabrem" data-v="rem"><span class="tbi"></span>Reminders</button>
  <button id="tabset" data-v="set"><span class="tbi"></span>Settings</button>
 </div></nav>
+<dialog id="dtd"><form method="dialog" id="dtf"><h3>My daily target</h3>
+ <p class="qsub" style="text-align:left;margin:4px 2px 0">The most mg you want in a day, all powders and tablets together.</p>
+ <label for="dti">Target</label><div class="mgw"><input id="dti" inputmode="decimal" maxlength="8" placeholder="e.g. 2000"><span>mg</span></div>
+ <p class="qsub" id="dte" style="color:var(--bad)"></p>
+ <div class="btns"><button type="button" id="dtx">Cancel</button><button type="button" class="del" id="dtrm">Remove</button><button class="ok" id="dtok">Save</button></div>
+</form></dialog>
 <dialog id="fd"><form id="f" method="dialog" autocomplete="off">
  <h3 id="fh"></h3>
  <label for="fb">Brand</label><input id="fb" name="b" maxlength="60" placeholder="e.g. Nature Made">
  <label for="fy">Type</label><input id="fy" name="ty" maxlength="60" placeholder="e.g. Vitamin D3">
  <label for="fm">Mg</label><div class="mgw"><input id="fm" name="mg" inputmode="decimal" maxlength="12" placeholder="e.g. 500"><span>mg</span></div>
+ <label for="fdg">Daily target</label><div class="mgw"><input id="fdg" name="dg" inputmode="decimal" maxlength="12" placeholder="optional, e.g. 1000"><span>mg</span></div>
  <label for="fn">Note</label><textarea id="fn" name="nt" rows="2" maxlength="300" placeholder="e.g. with food"></textarea>
  <label>Color</label><div class="sw" id="sw"></div>
  <p class="err" id="ferr" hidden></p>
@@ -282,6 +340,19 @@ dialog textarea{resize:vertical;min-height:3rem}
  <div class="btns"><button type="button" id="pc">Cancel</button><button class="ok" id="pok">Log</button></div>
 </form></dialog>
 <div id="toast" role="status"><span id="tm"></span><span class="tbs"><button id="tc"></button><button id="tu"></button></span></div>
+<dialog id="tmd"><form method="dialog" id="tmf"><h3 id="rht">New reminder</h3>
+ <label for="rn">Name</label><input id="rn" maxlength="40" placeholder="e.g. Next dose">
+ <div class="seg" id="tmseg"><button type="button" data-m="in" class="on">In…</button><button type="button" data-m="at">At a time</button></div>
+ <div id="tmin"><div class="tmi"><label>Hours<input type="number" id="tmh" min="0" max="48" inputmode="numeric" value="4"></label><label>Minutes<input type="number" id="tmm" min="0" max="59" inputmode="numeric" value="0"></label></div>
+  <div class="qp tmq"><button type="button" data-h="1">1h</button><button type="button" data-h="2">2h</button><button type="button" data-h="4">4h</button><button type="button" data-h="6">6h</button><button type="button" data-h="8">8h</button></div></div>
+ <div id="tmat" hidden><input type="time" id="tma" class="bigtime" value="20:00"></div>
+ <label class="rpt"><input type="checkbox" id="tmr"><span>Repeat</span></label>
+ <div id="tmri" hidden><div id="rgs"></div>
+  <button type="button" id="rga" class="rb wide">+ Make the next one different</button>
+  <p class="qsub" id="rgh" hidden>Intervals take turns in this order, then start over.</p></div>
+ <p class="qsub" id="tme" style="text-align:center"></p>
+ <div class="btns"><button type="button" id="tmx">Cancel</button><button type="button" class="del" id="rdel" hidden>Delete</button><button class="ok" id="tmgo">Start</button></div>
+</form></dialog>
 <dialog id="td"><form method="dialog" id="tf"><h3 id="tdh">Change time</h3><p class="qsub" id="tds"></p>
  <input type="time" id="tdi" class="bigtime" required>
  <div class="btns"><button type="button" id="tdc">Cancel</button><button class="ok" id="tdok">Save</button></div>
@@ -301,6 +372,7 @@ const SVG={
  pen:I('<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>',2.4),
  log:I('<path d="M9 5h10M9 12h10M9 19h10"/><circle cx="4.5" cy="5" r="1.2" fill="currentColor" stroke="none"/><circle cx="4.5" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="4.5" cy="19" r="1.2" fill="currentColor" stroke="none"/>'),
  cal:I('<rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><circle cx="12" cy="15" r="1.3" fill="currentColor" stroke="none"/>'),
+ bell:I('<path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15z"/><path d="M10 21h4"/>'),
  gear:I('<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M18.5 5.5l-1.8 1.8M7.3 16.7l-1.8 1.8"/>'),
  chk:I('<path d="M5 12.5l4.5 4.5L19 7.5"/>',2.6),
  copy:I('<rect x="8.5" y="8.5" width="11" height="11" rx="2.5"/><path d="M15.5 8.5V6a2.5 2.5 0 0 0-2.5-2.5H6A2.5 2.5 0 0 0 3.5 6v7A2.5 2.5 0 0 0 6 15.5h2.5"/>'),
@@ -318,7 +390,7 @@ const BIG={
 // ---- state ----
 let S;try{S=JSON.parse(localStorage.getItem('dv'))}catch(e){}
 if(!S||!Array.isArray(S.e))S={e:[]};if(!Array.isArray(S.it))S.it=[];if(!S.set||typeof S.set!=='object')S.set={};
-const save=()=>localStorage.setItem('dv',JSON.stringify(S));
+const save=()=>{localStorage.setItem('dv',JSON.stringify(S));if(typeof remSoon==='function')remSoon()};
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dsm=()=>{const m=/^(\d\d):(\d\d)$/.exec(S.set.ds||'');return m?[+m[1],+m[2]]:[0,0]}; // when a day starts: default 00:00 (12 AM), changeable in Settings
@@ -337,16 +409,16 @@ const hasMg=x=>x.mg!==''&&x.mg!=null&&isFinite(+x.mg);
 const emg=e=>hasMg(e)?+e.mg*qty(e):0;                       // total mg of one log entry
 const mgs=x=>hasMg(x)?(+x.mg).toLocaleString()+' mg':'';
 const fmg=n=>(Math.round(n*10)/10).toLocaleString();          // full number, 1 decimal max
-const cmg=n=>n>=1e5?Math.round(n/1e3)+'k':n>=1e4?(Math.round(n/100)/10)+'k':n>=100?Math.round(n).toLocaleString():String(Math.round(n*10)/10); // compact for a calendar cell
+const cmg=n=>n>=1e4?Math.round(n/1e3)+'k':n>=1e3?(Math.round(n/100)/10)+'k':String(Math.round(n)); // compact for a calendar cell: 999, 1.2k, 12k
 const det=e=>qty(e)>1?`${qty(e)} tablets`+(hasMg(e)?` · ${fmg(emg(e))} mg`:''):mgs(e);
 // ---- static icons ----
 $('#ip').innerHTML=BIG.p;$('#it').innerHTML=BIG.t;
 $('#prev').innerHTML=$('#cprev').innerHTML=$('#back').innerHTML=SVG.l;$('#next').innerHTML=$('#cnext').innerHTML=SVG.r;
-$('#tabhome .tbi').innerHTML=SVG.log;$('#tabcal .tbi').innerHTML=SVG.cal;$('#tabset .tbi').innerHTML=SVG.gear;
+$('#tabhome .tbi').innerHTML=SVG.log;$('#tabcal .tbi').innerHTML=SVG.cal;$('#tabrem .tbi').innerHTML=SVG.bell;$('#tabset .tbi').innerHTML=SVG.gear;
 $('#exp').innerHTML=SVG.up+'Export backup';$('#impl').insertAdjacentHTML('afterbegin',SVG.down+'Import backup');
 $('.qb[data-d="-1"]').innerHTML=SVG.minus;$('.qb[data-d="1"]').innerHTML=SVG.plus;
 // ---- views / tab bar ----
-function go(v){view=v;$('#home').hidden=v!=='home';$('#cal').hidden=v!=='cal';$('#set').hidden=v!=='set';
+function go(v){view=v;$('#home').hidden=v!=='home';$('#cal').hidden=v!=='cal';$('#set').hidden=v!=='set';$('#rem').hidden=v!=='rem';
  for(const b of document.querySelectorAll('.tabs button'))b.classList.toggle('on',b.dataset.v===v);
  if(v==='cal')cm=new Date(new Date(day).getFullYear(),new Date(day).getMonth(),1).getTime();
  scrollTo(0,0);render()}
@@ -366,6 +438,8 @@ function render(){
  if(!$('#list').hidden)renderList();
  if(view==='cal')renderCal();
  if(view==='set')renderSet();
+ renderDT();
+ if(view==='rem'){renderRem();renderRL()}
 }
 // ---- calendar view ----
 let cm=d0(Date.now());
@@ -385,15 +459,15 @@ function renderCal(){
   if(cnt)days++;sum+=v;if(v>max)max=v;cells.push({ts,d,v,cnt})}
  $('#cgrid').innerHTML=cells.map(c=>typeof c==='string'?c:
   `<button class="day${c.v?' has':''}${c.cnt?'':' e'}${c.ts===todayTs?' td':''}${c.ts===day?' sel':''}${c.ts>todayTs?' fut':''}" data-ts="${c.ts}" style="--i:${max?Math.round(8+30*c.v/max):0}%" aria-label="${new Date(c.ts).toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'})}${c.v?', '+fmg(c.v)+' mg':''}" ${c.ts>todayTs?'disabled':''}><span class="dn">${c.d}</span><span class="dm">${c.v?cmg(c.v):''}</span></button>`).join('');
- $('#lgt').textContent='Each day shows its total mg, tablets and powders together.'+(dsm()[0]||dsm()[1]?` A day runs from ${dsLabel()} to ${dsLabel()}.`:'')+' Tap a day to open its log.';
- $('#cs1').textContent=fmg(sum);$('#cs2').textContent=days;$('#cs3').textContent=days?fmg(sum/days):'0';
+ $('#lgt').textContent='Each day shows its total mg (k = thousands), tablets and powders together.'+(dsm()[0]||dsm()[1]?` A day runs from ${dsLabel()} to ${dsLabel()}.`:'')+' Tap a day to open its log.';
+ $('#cs1').textContent=sum>=1e5?cmg(sum):fmg(sum);$('#cs2').textContent=days;$('#cs3').textContent=days?(sum/days>=1e5?cmg(sum/days):fmg(sum/days)):'0';
 }
 $('#cgrid').addEventListener('click',ev=>{const b=ev.target.closest('.day');if(!b)return;day=+b.dataset.ts;go('home')});
 $('#cprev').onclick=()=>{const m=new Date(cm);cm=new Date(m.getFullYear(),m.getMonth()-1,1).getTime();renderCal()};
 $('#cnext').onclick=()=>{const m=new Date(cm);cm=new Date(m.getFullYear(),m.getMonth()+1,1).getTime();renderCal()};
 $('#ctoday').onclick=()=>{day=d0(Date.now());cm=new Date(new Date().getFullYear(),new Date().getMonth(),1).getTime();render()};
 // ---- self-update: the installed app pulls newer versions of itself from GitHub Pages ----
-const APP_VERSION=1794453419; // stamped with a timestamp by build.sh / publish.sh; 0 = development copy
+const APP_VERSION=1794456443; // stamped with a timestamp by build.sh / publish.sh; 0 = development copy
 const UPD_URL='https://agins86.github.io/daily-vitamins/';
 const canUpd=()=>!!(window.N&&N.Filesystem&&APP_VERSION>0&&location.hostname==='localhost');
 const verLabel=()=>APP_VERSION>0?new Date(APP_VERSION*1000).toLocaleString(undefined,{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'Development copy (live from the laptop)';
@@ -413,11 +487,15 @@ $('#avb').onclick=()=>checkUpdate(true);
 // ---- settings: when a day starts ----
 function renderSet(){$('#avs').textContent=verLabel();
  const[h,m]=dsm();$('#dsi').value=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');$('#dsr').disabled=!(h||m);
+ renderAb();
  $('#dsn').textContent=(h||m)?`Days run ${dsLabel()} to ${dsLabel()}.`:'Days run midnight to midnight.'}
 function setDayStart(v){S.set.ds=v;save();day=d0(Date.now());lastToday=day;render();
  cm=new Date(new Date(day).getFullYear(),new Date(day).getMonth(),1).getTime();renderSet()}
 $('#dsi').addEventListener('change',()=>{if(!$('#dsi').value)return renderSet();setDayStart($('#dsi').value);toast('Day starts at '+dsLabel())});
 $('#dsr').onclick=()=>{setDayStart('00:00');toast('Days run midnight to midnight')};
+// ---- daily targets ----
+const doneMg=x=>dayE().filter(e=>e.iid===x.id).reduce((a,e)=>a+emg(e),0);
+const pgBar=x=>{const d=doneMg(x),t=+x.dg;return `<div class="pg${d>t?' over':''}" aria-label="${fmg(d)} of ${fmg(t)} mg"><i style="width:${Math.min(100,d/t*100)}%"></i><span>${fmg(d)} / ${fmg(t)} mg</span></div>`};
 // ---- item list (sub-screen) ----
 let K='p';
 function openList(k){K=k;$('#list').className='view '+k;$('#lico').innerHTML=ICON[k];$('#lt').textContent='My '+PL[k];
@@ -429,7 +507,7 @@ function renderList(){
  $('#lhint').textContent=its.length?`Tap a ${NAME[K].toLowerCase()} to log it. Hold for options.`:'';
  $('#items').innerHTML=(its.length?'':`<div class="emptyl">No ${PL[K]} saved yet.<br>Add your first one below.</div>`)
   +its.map(x=>{const n=L.filter(e=>e.iid===x.id).reduce((a,e)=>a+qty(e),0);
-   const c=icol(x);return `<div class="ti ${K}" style="--ic:${c};--tx:${textOn(c)}"><button class="it" data-id="${x.id}" aria-label="${esc(lab(x))}${mgs(x)?', '+mgs(x):''}">${n?`<span class="n">×${n}</span>`:''}<span class="top">${x.b?`<small>${esc(x.b)}</small>`:''}${x.ty?`<b>${esc(x.ty)}</b>`:''}</span><span class="bot">${mgs(x)?esc(mgs(x)):''}</span></button><button class="ed" data-ed="${x.id}" aria-label="Edit ${esc(lab(x))}">${PEN}</button></div>`}).join('')
+   const c=icol(x);return `<div class="ti ${K}${hasMg({mg:x.dg})&&+x.dg>0?' hp':''}" style="--ic:${c};--tx:${textOn(c)}"><button class="it" data-id="${x.id}" aria-label="${esc(lab(x))}${mgs(x)?', '+mgs(x):''}">${n?`<span class="n">×${n}</span>`:''}<span class="top">${x.b?`<small>${esc(x.b)}</small>`:''}${x.ty?`<b>${esc(x.ty)}</b>`:''}</span><span class="bot">${mgs(x)?esc(mgs(x)):''}</span></button><button class="ed" data-ed="${x.id}" aria-label="Edit ${esc(lab(x))}">${PEN}</button>${hasMg({mg:x.dg})&&+x.dg>0?pgBar(x):''}</div>`}).join('')
   +`<button class="addit" id="addit" aria-label="Add ${NAME[K].toLowerCase()}">${SVG.plus}</button>`;
 }
 $('#back').onclick=closeList;
@@ -475,7 +553,8 @@ function logItem(x,q,tm,amt){
  const e={id:uid(),t:x.k,ts,iid:x.id,b:x.b,ty:x.ty,mg:x.k==='p'?amt:x.mg,c:icol(x)};if(q>1)e.q=q;S.e.push(e);save();render(); // stay on the list so several can be logged in a row
  const big=$('.big.'+x.k);big.classList.remove('pop');void big.offsetWidth;big.classList.add('pop');
  navigator.vibrate&&navigator.vibrate(15);
- toast((q>1?q+' × ':'')+lab(x),()=>{S.e=S.e.filter(i=>i.id!==e.id);save();render()},'Logged at '+clk(ts));
+ const over=hasMg({mg:x.dg})&&+x.dg>0&&doneMg(x)>+x.dg;
+ toast((q>1?q+' × ':'')+lab(x),()=>{S.e=S.e.filter(i=>i.id!==e.id);save();render()},'Logged at '+clk(ts)+(over?' · over this item\'s daily target':dtv()&&dayE().reduce((a,e)=>a+emg(e),0)>dtv()?' · over your daily target':''));
 }
 // ---- add / edit form ----
 let editing=null,fCol='#7C4DFF';const F=$('#f');
@@ -485,7 +564,7 @@ $('#sw').addEventListener('input',ev=>{if(ev.target.id==='fcc'){fCol=ev.target.v
 function openForm(x,copy){editing=x&&!copy?x:null;F.reset();$('#ferr').hidden=true;$('#fd').className=K;
  $('#fh').textContent=editing?'Edit '+NAME[K].toLowerCase():'New '+NAME[K].toLowerCase();$('#fdel').hidden=!editing;
  fCol=editing?icol(x):freeCol();renderSw();
- if(x){F.b.value=x.b||'';F.ty.value=x.ty||'';F.mg.value=x.mg??'';F.nt.value=x.nt||''}
+ if(x){F.b.value=x.b||'';F.ty.value=x.ty||'';F.mg.value=x.mg??'';F.dg.value=x.dg??'';F.nt.value=x.nt||''}
  $('#fd').showModal();if(!editing)F.b.focus()}
 $('#fcan').onclick=()=>$('#fd').close();
 F.addEventListener('submit',ev=>{
@@ -493,8 +572,10 @@ F.addEventListener('submit',ev=>{
  const err=m=>{ev.preventDefault();$('#ferr').textContent=m;$('#ferr').hidden=false};
  if(!b&&!ty)return err('Enter a brand or a type.');
  if(mr&&!(isFinite(mr)&&+mr>=0))return err('Mg must be a number.');
- const mg=mr?+mr:'';
- if(editing)Object.assign(editing,{b,ty,mg,nt,c:fCol});else S.it.push({id:uid(),k:K,b,ty,mg,nt,c:fCol});
+ const mg=mr?+mr:'',dr=F.dg.value.trim().replace(',','.');
+ if(dr&&!(isFinite(dr)&&+dr>=0))return err('Daily target must be a number.');
+ const dg=dr?+dr:'';
+ if(editing)Object.assign(editing,{b,ty,mg,nt,dg,c:fCol});else S.it.push({id:uid(),k:K,b,ty,mg,nt,dg,c:fCol});
  save();renderList();toast(editing?'Saved':'Added '+(b||ty));
 });
 function deleteItem(x){const i=S.it.indexOf(x);if(i<0)return;S.it.splice(i,1);save();renderList();
@@ -522,7 +603,7 @@ $('#od').addEventListener('click',ev=>{
  if(a==='del')return openOpts(x,true);
  $('#od').close();
  if(a==='edit')openForm(x);
- else if(a==='dup')openForm(x,true),(F.b.value=x.b||'',F.ty.value=x.ty||'',F.mg.value=x.mg??'',F.nt.value=x.nt||'');
+ else if(a==='dup')openForm(x,true),(F.b.value=x.b||'',F.ty.value=x.ty||'',F.mg.value=x.mg??'',F.dg.value=x.dg??'',F.nt.value=x.nt||'');
  else if(a==='log'){if(x.k==='t')logItem(x,1);else logItem(x,0,'',lastAmt(x).v)}});
 // long press (450 ms) on a tile; a normal tap still logs
 let lpT=null,lpX=0,lpY=0,lpDone=false;
@@ -548,7 +629,7 @@ $('#next').onclick=()=>{if(!isToday()){day=d0(day+36*36e5);render()}};
 $('#today').onclick=()=>{day=d0(Date.now());render()};
 // ---- backup: export a file through the Share sheet (phone) or a download (browser); import merges by id ----
 $('#exp').onclick=async()=>{
- const name='daily-vitamins-'+new Date().toISOString().slice(0,10)+'.json',data=JSON.stringify({app:'daily-vitamins',v:2,e:S.e,it:S.it,set:S.set});
+ const name='daily-vitamins-'+new Date().toISOString().slice(0,10)+'.json',data=JSON.stringify({app:'daily-vitamins',v:2,e:S.e,it:S.it,set:S.set,rl:rlGet()});
  try{if(window.N){const{Filesystem,Directory,Encoding,Share}=N;
    const w=await Filesystem.writeFile({path:name,data,directory:Directory.Cache,encoding:Encoding.UTF8});
    await Share.share({title:'Daily Vitamins backup',files:[w.uri]});}
@@ -558,15 +639,170 @@ $('#imp').onchange=async ev=>{const f=ev.target.files[0];ev.target.value='';if(!
  try{const d=JSON.parse(await f.text());if(d.app!=='daily-vitamins'||!Array.isArray(d.e))throw Error('not a Daily Vitamins backup');
   const have=new Set(S.e.map(e=>e.id));const add=d.e.filter(e=>e&&e.id&&!have.has(e.id)&&(e.t==='p'||e.t==='t')&&typeof e.ts==='number');
   const hi=new Set(S.it.map(x=>x.id)),ai=(Array.isArray(d.it)?d.it:[]).filter(x=>x&&x.id&&!hi.has(x.id)&&(x.k==='p'||x.k==='t'));
-  S.e.push(...add);S.it.push(...ai);save();render();const n=add.length+ai.length;toast(n?`Imported ${add.length} entries, ${ai.length} items`:'Nothing new to import');
+  S.e.push(...add);S.it.push(...ai);
+  if(d.set&&+d.set.dt>0&&!S.set.dt)S.set.dt=+d.set.dt;                       // daily target comes back if you have none
+  if(Array.isArray(d.rl)){const L=rlGet(),ids=new Set(L.map(r=>r.id)),used=new Set(L.map(r=>r.slot));            // reminders merge by id
+   for(const r of d.rl){if(!r||!r.id||ids.has(r.id)||!Array.isArray(r.gaps)||typeof r.at!=='number')continue;const sl=[...Array(RL_SLOTS).keys()].find(k=>!used.has(k));if(sl==null)break;used.add(sl);L.push({...r,slot:sl})}
+   rlSet(L);rlSoon()}
+  save();render();const n=add.length+ai.length;toast(n?`Imported ${add.length} entries, ${ai.length} items`:'Nothing new to import');
  }catch(e){toast('Import failed: '+e.message)}};
+// ---- phone: daily reminder ----
+const LN=window.N&&N.LocalNotifications;
+const REM_ID=100;let remT=null,remOn=false;
+const remTime=()=>/^\d\d:\d\d$/.test(S.set.rm||'')?S.set.rm:'';
+function remSoon(){if(!LN)return;clearTimeout(remT);remT=setTimeout(syncRem,800)}
+async function syncRem(){if(!LN)return;try{
+ const{notifications:p}=await LN.getPending(),old=p.filter(n=>n.id>=REM_ID&&n.id<REM_ID+14);
+ if(old.length)await LN.cancel({notifications:old.map(n=>({id:n.id}))});
+ const t=remTime();if(!t||!remOn)return;const[h,m]=t.split(':').map(Number),now=Date.now(),out=[];
+ for(let k=0;k<10;k++){const d=new Date();d.setDate(d.getDate()+k);d.setHours(h,m,0,0);const at=d.getTime();
+  if(at<=now+5000)continue;const ds=d0(at);if(S.e.some(e=>d0(e.ts)===ds))continue; // that day already has entries: no reminder
+  out.push({id:REM_ID+k,title:'Daily Vitamins',body:"You haven't logged anything today.",channelId:'vit',schedule:{at:new Date(at),allowWhileIdle:true},autoCancel:true})}
+ if(out.length)await LN.schedule({notifications:out})}catch(e){}}
+async function renderRem(){const c=$('#rmc');if(!LN){c.hidden=true;return}c.hidden=false;
+ try{remOn=(await LN.checkPermissions()).display==='granted'}catch(e){remOn=false}
+ const t=remTime(),on=!!t&&remOn;
+ $('#rmt').value=t||$('#rmt').value||'20:00';
+ $('#rmn').textContent=on?'On: reminds you at '+new Date(2000,0,1,...(t||'20:00').split(':').map(Number)).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})+' if nothing is logged.':(t&&!remOn?'Notifications are blocked: allow them for Daily Vitamins in Android settings.':'Off');
+ $('#rmb').textContent=on?'Turn off':'Turn on'}
+$('#rmb').onclick=async()=>{if(!LN)return;
+ if(remTime()&&remOn){S.set.rm='';save();await syncRem();return renderRem()}
+ try{const r=await LN.requestPermissions();if(r.display!=='granted'){toast('Notifications were not allowed');return renderRem()}}catch(e){return toast('Could not turn on reminders')}
+ remOn=true;S.set.rm=$('#rmt').value||'20:00';save();await syncRem();renderRem();toast('Daily reminder on')};
+$('#rmt').addEventListener('change',async()=>{if(!$('#rmt').value||!remTime())return;S.set.rm=$('#rmt').value;save();await syncRem();renderRem()});
+if(LN){LN.createChannel({id:'vit',name:'Reminders',description:'Daily log reminder',importance:4,vibration:true}).catch(()=>{});
+ LN.addListener('localNotificationActionPerformed',()=>{if(!$('#list').hidden)closeList();day=d0(Date.now());go('home')});
+ LN.checkPermissions().then(r=>{remOn=r.display==='granted';syncRem()}).catch(()=>{})}
+// ---- phone: weekly auto-backup to Documents/DailyVitamins ----
+const AB_PATH='DailyVitamins/daily-vitamins-auto.json';
+async function autoBackup(force){if(!window.N||!N.Filesystem)return;
+ if(!force&&(S.set.ab===false||Date.now()-(+localStorage.getItem('ab_last')||0)<7*864e5))return;
+ if(!S.e.length&&!S.it.length){if(force)toast('Nothing to back up yet');return}
+ try{await N.Filesystem.writeFile({path:AB_PATH,data:JSON.stringify({app:'daily-vitamins',v:2,e:S.e,it:S.it,set:S.set,rl:rlGet()}),directory:N.Directory.Documents,encoding:N.Encoding.UTF8,recursive:true});
+  localStorage.setItem('ab_last',Date.now());localStorage.removeItem('ab_err');if(force)toast('Backup saved','','Documents/'+AB_PATH)}
+ catch(e){localStorage.setItem('ab_err',String(e.message||e));if(force)toast("Backup failed",null,String(e.message||e))}
+ if(view==='set')renderAb()}
+function renderAb(){const c=$('#abc');if(!window.N){c.hidden=true;return}c.hidden=false;
+ const on=S.set.ab!==false,l=+localStorage.getItem('ab_last'),er=localStorage.getItem('ab_err');
+ $('#abb').textContent=on?'Turn off':'Turn on';
+ $('#abn').textContent=er?'Last attempt failed: '+er:l?'Last backup: '+new Date(l).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):(on?'No backup yet.':'Off')}
+$('#abb').onclick=()=>{S.set.ab=S.set.ab===false;save();renderAb();if(S.set.ab)autoBackup()};
+$('#abnow').onclick=()=>autoBackup(true);
+// ---- phone: widget / deep link  dailyvitamins://log/p  or  /t  -> log the usual one ----
+let lastLink=0;
+function quickLog(k){if(Date.now()-lastLink<3000)return;lastLink=Date.now();
+ if(!$('#list').hidden)closeList();day=d0(Date.now());go('home');
+ const rec=S.e.filter(e=>e.t===k&&S.it.some(i=>i.id===e.iid&&i.k===k)).sort((a,b)=>b.ts-a.ts)[0],x=rec&&S.it.find(i=>i.id===rec.iid);
+ if(!x)return openList(k);                                  // nothing used yet: show the list instead
+ if(k==='t')logItem(x,1);else if(lastAmt(x).v!=='')logItem(x,0,'',lastAmt(x).v);else openList(k)}
+const onLink=u=>{const m=/^dailyvitamins:\/\/log\/([pt])/.exec(u||'');if(m)quickLog(m[1])};
+if(window.N){N.App.addListener('appUrlOpen',ev=>onLink(ev.url));N.App.getLaunchUrl().then(r=>onLink(r&&r.url)).catch(()=>{})}
+// ---- my daily target: overall mg goal, shows how much is left today ----
+const dtv=()=>{const v=+S.set.dt;return v>0?v:0};
+function renderDT(){const c=$('#dtc'),t=dtv(),d=dayE().reduce((a,e)=>a+emg(e),0);
+ c.classList.toggle('none',!t);c.classList.toggle('over',!!t&&d>t);
+ $('#dtr').style.strokeDasharray=(t?Math.min(100,d/t*100):0)+' 100';
+ $('#dtp').textContent=t?Math.round(d/t*100)+'%':'';
+ if(!t){$('#dts').textContent='My daily target';$('#dtb').textContent='Set a target';$('#dtn').textContent='See how many mg you have left each day.';return}
+ const left=t-d;$('#dts').textContent=left<0?'Over your target by':'mg left today';
+ $('#dtb').textContent=left<0?fmg(-left)+' mg':fmg(left)+' mg';
+ $('#dtn').textContent=fmg(d)+' of '+fmg(t)+' mg taken'}
+$('#dtc').onclick=()=>{$('#dti').value=dtv()||'';$('#dte').textContent='';$('#dtrm').hidden=!dtv();$('#dtd').showModal();$('#dti').focus()};
+$('#dtx').onclick=()=>$('#dtd').close();
+$('#dtrm').onclick=()=>{delete S.set.dt;save();$('#dtd').close();render()};
+$('#dtf').addEventListener('submit',ev=>{const v=$('#dti').value.trim().replace(',','.');
+ if(!(isFinite(v)&&+v>0)){ev.preventDefault();$('#dte').textContent='Enter a number above 0.';return}
+ S.set.dt=+v;save();render()});
+// ---- Reminders tab: a first time (in H:M, or at a clock time) + optional repeating intervals that take turns ----
+const RL_BASE=1000,RL_PER=40,RL_SLOTS=20,RL_OLD=300;
+const rlGet=()=>{try{const v=JSON.parse(localStorage.getItem('rm2'));return Array.isArray(v)?v:[]}catch(e){return[]}};
+const rlSet=v=>localStorage.setItem('rm2',JSON.stringify(v));
+(function(){try{const o=JSON.parse(localStorage.getItem('nt'));  // old single timer -> first reminder
+ if(o&&!rlGet().length){const a=typeof o==='number'?o:+o.at,rp=typeof o==='number'?0:+o.rep||0;if(a)rlSet([{id:uid(),slot:0,name:'Next dose',at:a,gaps:rp?[rp]:[],k:0,on:true}])}
+ localStorage.removeItem('nt')}catch(e){}})();
+const fdur=ms=>{const m=Math.max(0,Math.ceil(ms/6e4)),h=Math.floor(m/60);return h?h+'h'+(m%60?' '+String(m%60).padStart(2,'0')+'m':''):(m||'<1')+' min'};
+const wh=ts=>(new Date(ts).toDateString()===new Date().toDateString()?'':new Date(ts).toLocaleDateString(undefined,{weekday:'short'})+' ')+clk(ts);
+function rlRoll(r){if(!r.on||!r.gaps.length||r.at>Date.now())return false;   // a repeating reminder jumps to its next future time
+ const now=Date.now(),cyc=r.gaps.reduce((a,b)=>a+b,0);let n=0;
+ const sk=Math.floor((now-r.at)/cyc);if(sk>0)r.at+=sk*cyc;
+ while(r.at<=now&&n++<1000){r.at+=r.gaps[r.k%r.gaps.length];r.k=(r.k+1)%r.gaps.length}
+ return true}
+function rlTimes(r){const now=Date.now(),out=[];if(!r.on)return out;let t=r.at,k=r.k||0;
+ if(t>now)out.push(t);if(!r.gaps.length)return out;
+ while(out.length<RL_PER&&t<now+14*864e5){t+=r.gaps[k%r.gaps.length];k++;if(t>now)out.push(t)}
+ return out}
+let rlT=null;
+const rlSoon=()=>{clearTimeout(rlT);rlT=setTimeout(rlSync,300)};
+async function rlSync(){if(!LN)return;try{
+ const{notifications:p}=await LN.getPending(),old=p.filter(n=>(n.id>=RL_OLD&&n.id<RL_OLD+48)||(n.id>=RL_BASE&&n.id<RL_BASE+RL_SLOTS*RL_PER));
+ if(old.length)await LN.cancel({notifications:old.map(n=>({id:n.id}))});
+ const out=[];for(const r of rlGet())rlTimes(r).forEach((t,i)=>out.push({id:RL_BASE+r.slot*RL_PER+i,title:r.name||'Reminder',body:'Tap to open Daily Vitamins.',channelId:'vit',schedule:{at:new Date(t),allowWhileIdle:true},autoCancel:true}));
+ if(out.length)await LN.schedule({notifications:out})}catch(e){}}
+function rlCheck(){const L=rlGet();let ch=false;L.forEach(r=>{if(rlRoll(r))ch=true});if(ch){rlSet(L);rlSoon()}return L}
+const gapTxt=g=>!g.length?'':[...new Set(g)].length===1?'repeats every '+fdur(g[0]):'repeats '+g.map(fdur).join(' → ')+' → …';
+function renderRL(){const L=rlCheck(),now=Date.now();
+ $('#rll').innerHTML=L.length?L.map(r=>{const due=r.on&&r.at<=now;
+  const a=!r.on?'Paused':due?'Was due at '+wh(r.at):'Next: '+wh(r.at)+' · in '+fdur(r.at-now);
+  return `<div class="card rc${r.on?'':' off'}${due?' due':''}" data-id="${r.id}"><button class="tl" data-a="edit"><b>${esc(r.name||'Reminder')}</b><small>${esc(a)}</small>${r.gaps.length?`<small>${esc(gapTxt(r.gaps))}</small>`:''}</button><button class="rb" data-a="tog">${r.on?'Pause':'Resume'}</button></div>`}).join('')
+  :'<p class="hint" style="margin-top:0">No reminders yet.</p>';
+ $('#rla').disabled=L.length>=RL_SLOTS}
+$('#rll').addEventListener('click',ev=>{const c=ev.target.closest('.rc');if(!c)return;const L=rlGet(),r=L.find(x=>x.id===c.dataset.id);if(!r)return;
+ if(ev.target.closest('[data-a=tog]')){r.on=!r.on;if(r.on){r.k=r.k||0;rlRoll(r)}rlSet(L);rlSoon();renderRL();return}
+ rlOpen(r)});
+// ---- add / edit dialog ----
+let rlEd=null,tmMode='in',G=[{h:4,m:0}],gTouched=false;
+const gMs=g=>(Math.min(48,Math.max(0,Math.floor(+g.h||0)))*60+Math.min(59,Math.max(0,Math.floor(+g.m||0))))*6e4;
+function gRender(){$('#rgs').innerHTML=G.map((g,i)=>`<div class="gw"><div class="gc">${i?'Then, after':'Repeat every'}</div><div class="tmi gr"><label>Hours<input type="number" data-i="${i}" data-f="h" min="0" max="48" inputmode="numeric" value="${g.h}"></label><label>Minutes<input type="number" data-i="${i}" data-f="m" min="0" max="59" inputmode="numeric" value="${g.m}"></label>${i?`<button type="button" class="gx" data-i="${i}" aria-label="Remove interval">${SVG.x}</button>`:''}</div></div>`).join('');
+ $('#rgh').hidden=G.length<2;$('#rga').hidden=G.length>=8}
+function tmCalc(){let first;
+ if(tmMode==='in'){const m=gMs({h:$('#tmh').value,m:$('#tmm').value});first=m?Date.now()+m:0}
+ else{const v=$('#tma').value;if(v){const[h,m]=v.split(':').map(Number),d=new Date();d.setHours(h,m,0,0);if(d.getTime()<=Date.now())d.setDate(d.getDate()+1);first=d.getTime()}else first=0}
+ return{first,gaps:$('#tmr').checked?G.map(gMs):[]}}
+function tmShow(){
+ if(!gTouched&&tmMode==='in'&&G.length===1&&$('#tmr').checked){G[0]={h:+$('#tmh').value||0,m:+$('#tmm').value||0};gRender()}   // repeat defaults to the same interval
+ const{first,gaps}=tmCalc();
+ $('#tmin').hidden=tmMode!=='in';$('#tmat').hidden=tmMode!=='at';$('#tmri').hidden=!$('#tmr').checked;
+ document.querySelectorAll('#tmseg button').forEach(b=>b.classList.toggle('on',b.dataset.m===tmMode));
+ const h=+$('#tmh').value||0,m=+$('#tmm').value||0;document.querySelectorAll('.tmq button').forEach(b=>b.classList.toggle('on',+b.dataset.h===h&&!m));
+ let t=first,txt='';if(first){const l=[wh(first)];for(let i=0;i<3&&gaps.length&&gaps.every(x=>x);i++){t+=gaps[i%gaps.length];l.push(wh(t))}txt='Rings '+l.join(' → ')+(gaps.length?' → …':'')}
+ $('#tme').textContent=txt}
+function rlOpen(r){rlEd=r||null;tmMode=r?'at':'in';
+ $('#rn').value=r?r.name:'';$('#tmh').value=4;$('#tmm').value=0;$('#tma').value=r?hm(r.at):'20:00';
+ const g=r&&r.gaps.length?r.gaps:[];gTouched=!!g.length;
+ G=g.length?g.map(ms=>({h:Math.floor(ms/36e5),m:Math.round(ms%36e5/6e4)})):[{h:4,m:0}];
+ $('#tmr').checked=!!g.length;$('#rdel').hidden=!r;$('#tmgo').textContent=r?'Save':'Start';$('#rht').textContent=r?'Edit reminder':'New reminder';
+ gRender();tmShow();$('#tmd').showModal()}
+$('#rla').onclick=()=>rlOpen(null);
+$('#tmd').addEventListener('input',ev=>{const g=ev.target.closest('#rgs input');
+ if(g){G[+g.dataset.i][g.dataset.f]=g.value;gTouched=true}
+ tmShow()});
+$('#tmd').addEventListener('click',ev=>{
+ const q=ev.target.closest('.tmq button');if(q){$('#tmh').value=q.dataset.h;$('#tmm').value=0;return tmShow()}
+ const g=ev.target.closest('#tmseg button');if(g){tmMode=g.dataset.m;return tmShow()}
+ const x=ev.target.closest('.gx');if(x){G.splice(+x.dataset.i,1);gTouched=true;gRender();return tmShow()}
+ if(ev.target.closest('#rga')){const l=G[G.length-1];G.push({h:l.h,m:l.m});gTouched=true;gRender();tmShow();const ins=document.querySelectorAll('#rgs input');ins[ins.length-2].focus()}});   // new interval starts as a copy: same unless you change it
+$('#tmx').onclick=()=>$('#tmd').close();
+$('#rdel').onclick=()=>{if(!rlEd)return;const old=rlEd;rlSet(rlGet().filter(x=>x.id!==old.id));$('#tmd').close();rlSoon();renderRL();
+ toast('Reminder deleted',()=>{const L=rlGet();L.push(old);rlSet(L);rlSoon();renderRL()})};
+$('#tmf').addEventListener('submit',async ev=>{const{first,gaps}=tmCalc();
+ if(!first){ev.preventDefault();$('#tme').textContent=tmMode==='in'?'Set at least 1 minute.':'Pick a time.';return}
+ if(gaps.some(x=>!x)){ev.preventDefault();$('#tme').textContent='Every interval needs at least 1 minute.';return}
+ const L=rlGet(),name=$('#rn').value.trim();
+ if(rlEd){const r=L.find(x=>x.id===rlEd.id);if(r)Object.assign(r,{name,at:first,gaps,k:0,on:true})}
+ else{const used=new Set(L.map(x=>x.slot)),slot=[...Array(RL_SLOTS).keys()].find(n=>!used.has(n));
+  if(slot==null){ev.preventDefault();$('#tme').textContent='Too many reminders.';return}
+  L.push({id:uid(),slot,name,at:first,gaps,k:0,on:true})}
+ rlSet(L);
+ if(LN){try{if((await LN.checkPermissions()).display!=='granted'&&(await LN.requestPermissions()).display!=='granted')toast('Allow notifications to hear reminders')}catch(e){}}
+ await rlSync();renderRL();toast('Reminder set',null,'First at '+wh(first)+(gaps.length?' · '+gapTxt(gaps):''))});
+rlSoon();
 // ---- keep fresh and roll over at midnight ----
 lastToday=d0(Date.now());
 const tick=()=>{const t=d0(Date.now());if(t!==lastToday){if(day===lastToday)day=t;lastToday=t}render()};
 setInterval(tick,30000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)tick()});
 // ---- phone back button: dialogs, then the item list, then Calendar -> Log, then back to today, else leave ----
-if(window.N)N.App.addListener('backButton',()=>{if($('#od').open)$('#od').close();else if($('#td').open)$('#td').close();else if($('#pd').open)$('#pd').close();else if($('#qd').open)$('#qd').close();else if($('#fd').open)$('#fd').close();else if(!$('#list').hidden)closeList();else if(view!=='home')go('home');else if(!isToday()){day=d0(Date.now());render()}else N.App.exitApp()});
-render();
+if(window.N)N.App.addListener('backButton',()=>{if($('#od').open)$('#od').close();else if($('#td').open)$('#td').close();else if($('#tmd').open)$('#tmd').close();else if($('#dtd').open)$('#dtd').close();else if($('#pd').open)$('#pd').close();else if($('#qd').open)$('#qd').close();else if($('#fd').open)$('#fd').close();else if(!$('#list').hidden)closeList();else if(view!=='home')go('home');else if(!isToday()){day=d0(Date.now());render()}else N.App.exitApp()});
+render();setTimeout(autoBackup,5000);
 try{localStorage.removeItem('upd_boot')}catch(e){} // a bad update never reaches this line, so the loader drops it next launch
 if(canUpd()&&Date.now()-(+localStorage.getItem('upd_last')||0)>6*36e5)setTimeout(()=>checkUpdate(false),3000);
 </script>
