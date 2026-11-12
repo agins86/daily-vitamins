@@ -133,7 +133,7 @@ dialog label.rpt input{width:22px;min-height:22px;height:22px;padding:0;accent-c
 .row:first-child{border-top:0}
 .rl{min-width:0}.rl b{display:block;font-weight:800}
 .rl small,.row>small{display:block;color:var(--muted);font-size:.78rem;font-weight:700;line-height:1.35;margin-top:2px}
-.row>small{margin:0}
+.row>small{margin:0;min-width:0;overflow-wrap:anywhere}
 .row input[type=time]{flex:none;width:9.4em;font:inherit;font-weight:800;min-height:44px;padding:8px 10px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);text-align:center;-webkit-user-select:text;user-select:text}
 .rb{flex:none;min-height:40px;padding:0 14px;border-radius:10px;background:var(--soft);font-weight:800;font-size:.84rem}
 .rb:disabled{opacity:.4}
@@ -270,7 +270,7 @@ dialog textarea{resize:vertical;min-height:3rem}
  <div class="row"><small id="dsn"></small><button id="dsr" class="rb">Reset to 12:00 AM</button></div>
 </section>
 <section class="card" id="abc" hidden>
- <div class="row"><div class="rl"><b>Weekly auto-backup</b><small>Saves a copy of your data to the phone's Documents/DailyVitamins folder once a week. Restore it with Import backup.</small></div><button id="abb" class="rb">Turn off</button></div>
+ <div class="row"><div class="rl"><b>Weekly auto-backup</b><small>Saves a copy of your data in the app's own folder (Android/data/com.dailyvitamins.app/files/DailyVitamins) once a week. Restore it with Import backup. It is removed if you uninstall the app, so also use Export backup now and then.</small></div><button id="abb" class="rb">Turn off</button></div>
  <div class="row"><small id="abn"></small><button id="abnow" class="rb">Back up now</button></div>
 </section>
 <section class="card">
@@ -467,7 +467,7 @@ $('#cprev').onclick=()=>{const m=new Date(cm);cm=new Date(m.getFullYear(),m.getM
 $('#cnext').onclick=()=>{const m=new Date(cm);cm=new Date(m.getFullYear(),m.getMonth()+1,1).getTime();renderCal()};
 $('#ctoday').onclick=()=>{day=d0(Date.now());cm=new Date(new Date().getFullYear(),new Date().getMonth(),1).getTime();render()};
 // ---- self-update: the installed app pulls newer versions of itself from GitHub Pages ----
-const APP_VERSION=1794456443; // stamped with a timestamp by build.sh / publish.sh; 0 = development copy
+const APP_VERSION=1794457099; // stamped with a timestamp by build.sh / publish.sh; 0 = development copy
 const UPD_URL='https://agins86.github.io/daily-vitamins/';
 const canUpd=()=>!!(window.N&&N.Filesystem&&APP_VERSION>0&&location.hostname==='localhost');
 const verLabel=()=>APP_VERSION>0?new Date(APP_VERSION*1000).toLocaleString(undefined,{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'Development copy (live from the laptop)';
@@ -678,8 +678,8 @@ const AB_PATH='DailyVitamins/daily-vitamins-auto.json';
 async function autoBackup(force){if(!window.N||!N.Filesystem)return;
  if(!force&&(S.set.ab===false||Date.now()-(+localStorage.getItem('ab_last')||0)<7*864e5))return;
  if(!S.e.length&&!S.it.length){if(force)toast('Nothing to back up yet');return}
- try{await N.Filesystem.writeFile({path:AB_PATH,data:JSON.stringify({app:'daily-vitamins',v:2,e:S.e,it:S.it,set:S.set,rl:rlGet()}),directory:N.Directory.Documents,encoding:N.Encoding.UTF8,recursive:true});
-  localStorage.setItem('ab_last',Date.now());localStorage.removeItem('ab_err');if(force)toast('Backup saved','','Documents/'+AB_PATH)}
+ try{await N.Filesystem.writeFile({path:AB_PATH,data:JSON.stringify({app:'daily-vitamins',v:2,e:S.e,it:S.it,set:S.set,rl:rlGet()}),directory:N.Directory.External,encoding:N.Encoding.UTF8,recursive:true});
+  localStorage.setItem('ab_last',Date.now());localStorage.removeItem('ab_err');if(force)toast('Backup saved','','Android/data/com.dailyvitamins.app/files/'+AB_PATH)}
  catch(e){localStorage.setItem('ab_err',String(e.message||e));if(force)toast("Backup failed",null,String(e.message||e))}
  if(view==='set')renderAb()}
 function renderAb(){const c=$('#abc');if(!window.N){c.hidden=true;return}c.hidden=false;
